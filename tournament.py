@@ -117,9 +117,8 @@ def swissPairings():
     cursor = conn.cursor()
     cursor.execute("SELECT id, name FROM standings ORDER BY total_wins DESC")
     winners_list = cursor.fetchall()
+    conn.close()
     for i in range(0, len(winners_list), 2):
         c = winners_list[i][0], winners_list[i][1], winners_list[i+1][0], winners_list[i+1][1]
         pairs.append(c)
     return pairs
-
-    conn.close()
